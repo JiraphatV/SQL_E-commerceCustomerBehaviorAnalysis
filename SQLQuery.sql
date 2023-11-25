@@ -10,19 +10,13 @@ ORDER BY PurchaseCount DESC;
 SELECT [Age], [Gender], COUNT(*) as CustomerCount
 FROM [dbo].[ecommerce_customer_data_large]
 GROUP BY [Age], [Gender]
-ORDER BY [Age];
-
--- 3. Purchasing Trends Over Time
-SELECT FORMAT([Purchase_Date], 'yyyy-MM') as PurchaseMonth, SUM([Purchase_Date]) as TotalAmount
-FROM [dbo].[ecommerce_customer_data_large]
-GROUP BY FORMAT([Purchase_Date], 'yyyy-MM')
-ORDER BY PurchaseMonth;
+ORDER BY CustomerCount DESC;
 
 -- 3. Purchasing Trends Over Time
 SELECT FORMAT([Purchase_Date], 'yyyy-MM') as PurchaseMonth, SUM([Total_Purchase_Amount]) as TotalAmount
 FROM [dbo].[ecommerce_customer_data_large]
 GROUP BY FORMAT([Purchase_Date], 'yyyy-MM')
-ORDER BY PurchaseMonth;
+ORDER BY TotalAmount DESC;
 
 --4. Payment Method Preferences
 SELECT [Payment_Method], COUNT(*) as PaymentCount
@@ -60,4 +54,3 @@ SELECT [Age], [Product_Category], COUNT(*) as PurchaseCount
 FROM [dbo].[ecommerce_customer_data_large]
 GROUP BY [Age], [Product_Category]
 ORDER BY [Age], PurchaseCount DESC;
-
